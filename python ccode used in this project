@@ -1,0 +1,31 @@
+import emoji
+import random
+from twilio.rest import Client
+
+# Twilio account information
+account_sid = 'your_account_sid'
+auth_token = 'your_auth_token'
+client = Client(account_sid, auth_token)
+
+# List of possible emojis
+emoji_list = [':smile:', ':laughing:', ':heart:', ':silly:', ':wink:']
+
+# Phone number to send the message to
+to_phone_number = '+1234567890'
+
+# Phone number to send the message from (must be a Twilio number)
+from_phone_number = '+0987654321'
+
+while True:
+    # Select a random emoji from the list
+    emoji = random.choice(emoji_list)
+
+    # Send the emoji in a text message
+    message = client.messages.create(
+        body=emoji,
+        from_=from_phone_number,
+        to=to_phone_number
+    )
+
+    # Wait for one hour before sending the next message
+    time.sleep(3600)
